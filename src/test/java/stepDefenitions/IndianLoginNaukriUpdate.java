@@ -1,12 +1,13 @@
 package stepDefenitions;
 
+import static com.utility.BrowserUtility.driver;
+
 import java.time.Duration;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -15,15 +16,23 @@ import com.utility.BrowserUtility;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import net.bytebuddy.asm.Advice.This;
 
 public class IndianLoginNaukriUpdate {
-	WebDriver driver;
+	
+
+	private WebDriver driver;
 	
 
 	@Given("I have logged in setup and logged in to Naukri website")
-	public void i_have_logged_in_setup_and_logged_in_to_naukri_website() {
+	public void i_have_logged_in_setup_and_logged_in_to_naukri_website()  {
 		
-		driver = BrowserUtility.supplyDriver("chrome");
+		try {
+			driver = BrowserUtility.supplyDriver("chrome");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3000));
 
